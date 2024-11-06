@@ -1,4 +1,4 @@
--- Seleciona o banco de dados (substitua "meu_sistema" pelo nome do seu banco de dados, se necessário)
+
 USE meu_sistema;
 
 -- Inserindo dados iniciais na tabela de Categorias
