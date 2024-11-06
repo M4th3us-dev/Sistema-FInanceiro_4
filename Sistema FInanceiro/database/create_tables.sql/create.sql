@@ -1,4 +1,4 @@
--- Selecione o banco de dados (substitua "meu_sistema" pelo nome do seu banco de dados, se necessário)
+
 USE meu_sistema;
 
 -- Criação da tabela de Categorias
