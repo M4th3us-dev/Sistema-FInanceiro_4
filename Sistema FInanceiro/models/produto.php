@@ -1,6 +1,4 @@
 <?php
-// app/models/Produto.php
-
 class Produto {
     private $conn;
     private $table_name = "produtos";
@@ -20,4 +18,15 @@ class Produto {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function criar($nome, $categoria_id, $preco) {
+        if (empty($nome) || empty($preco) || !is_numeric($preco)) {
+            return false;
+        }
+
+        $query = "INSERT INTO " . $this->table_name . " (nome, categoria_id, preco) VALUES (?, ?, ?)";
+        $stmt = $this->conn->prepare($query);
+        return $stmt->execute([$nome, $categoria_id, $preco]);
+    }
 }
+?>
