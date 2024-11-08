@@ -1,3 +1,28 @@
+<?php
+session_start();
+require_once 'config/database.php'; // Conexão com o banco
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Verifica o usuário no banco
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
+    $stmt->execute([$username]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Verifica se a senha é válida
+    if ($user && password_verify($password, $user['password'])) {
+        $_SESSION['user_id'] = $user['id']; // Armazena o ID do usuário na sessão
+        header("Location: dashboard.php");
+        exit;
+    } else {
+        $error = "Usuário ou senha inválidos!";
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
