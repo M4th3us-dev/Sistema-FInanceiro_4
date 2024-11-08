@@ -1,14 +1,14 @@
 <?php
-// config.php
+$host = '127.0.0.1';
+$host = 'localhost';
+$dbname = 'Sistema Financeiro';
+$username = 'root';
+$password = '12345';
 
-$db_host = 'localhost';
-$db_user = 'root';
-$db_password = '';
-$db_name = 'finance_system';
-
-$conn = new mysqli($db_host, $db_user, $db_password, $db_name);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Erro na conexão com o banco de dados: " . $e->getMessage());
 }
 ?>
